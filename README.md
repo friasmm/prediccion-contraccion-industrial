@@ -14,7 +14,7 @@ Para cada una de las 16 divisiones de la industria manufacturera argentina, el p
 
 Se compararon cinco modelos de clasificación (regresión logística, KNN, árbol de decisión, Random Forest y Gradient Boosting) con validación temporal, sin fuga de información. Se contrastaron con una referencia de inercia ("la división seguirá como en el último dato").
 
-El modelo elegido por validación, **KNN con k = 15**, detectó en 2025-2026 el **55%** de las contracciones, con un **63%** de alertas correctas. Es un desempeño **prácticamente igual al de la referencia**: con estas variables, anticipar los cambios de ciclo con 3 meses de horizonte resultó muy difícil. El repositorio incluye el modelo listo para usar y sus predicciones para los meses cuyo resultado todavía no se publicó.
+El modelo elegido por validación, **KNN con k = 15**, detectó en 2025-2026 el **55%** de las contracciones, con un **63%** de alertas correctas. Es un desempeño **prácticamente igual al de la referencia**, lo que sugiere que, con estas variables, anticipar los cambios de ciclo con 3 meses de horizonte podría ser muy difícil. El repositorio incluye el modelo listo para usar y sus predicciones para los meses cuyo resultado todavía no se publicó.
 
 **Cómo recorrer el proyecto:**
 1. Este README: definición del problema, resultados y conclusiones.
@@ -119,15 +119,17 @@ El modelo elegido **detectó 86 de las 156 contracciones** y emitió **51 falsas
 
 ## 8. Conclusiones
 
-- **El modelo no supera de forma clara a la referencia de inercia.** Con estas variables y 3 meses de horizonte desde la decisión, la evidencia no permite afirmar que el modelo anticipe mejor que suponer que cada división seguirá como en el último dato publicado.
-- **La dificultad está en los cambios de ciclo.** Ni el modelo ni la referencia anticiparon el giro de mediados de 2025, cuando la proporción de contracciones pasó del 10% al 60-73%. En los períodos estables, ambos aciertan alrededor del 70%.
-- **Las métricas engañosas se detectaron.** Un clasificador que dice siempre "contracción" tiene el F1 más alto (0,729) sin anticipar nada. Por eso se eligió con exactitud balanceada y se compararon todos los modelos con referencias.
-- **Hipótesis para seguir investigando** (no comprobadas):
-  - las variables nominales (tipo de cambio, BADLAR) cambian de significado cuando cambia la inflación, lo que podría explicar el mal desempeño de los árboles en 2025-2026;
-  - la regresión logística, más conservadora, obtuvo alertas muy precisas en 2025-2026, pero eso hay que confirmarlo con más períodos de validación, no con el conjunto de prueba.
-- **Uso:** el modelo predice contracción en enero de 2027 para 12 de las 16 divisiones ([`models/predicciones_pendientes.csv`](models/predicciones_pendientes.csv)). Estas predicciones se podrán verificar cuando el INDEC publique esos meses.
+Estas conclusiones se apoyan en la evidencia de este trabajo (estos datos, el período 2017-2026 y esta definición del problema). Se presentan como resultados acotados e hipótesis, no como afirmaciones generales.
 
-Estas conclusiones valen para estos datos, este período y esta definición del problema. Las asociaciones encontradas no son relaciones causales.
+- **En la evaluación de 2025-2026, el modelo no superó de forma clara a la referencia de inercia** (exactitud balanceada 0,556 contra 0,555). Con esta evidencia, no es posible afirmar que el modelo anticipe mejor que suponer que cada división seguirá como en el último dato publicado.
+- **La principal dificultad parecería estar en los cambios de ciclo.** En esta muestra, ni el modelo ni la referencia anticiparon el giro de mediados de 2025, cuando la proporción de contracciones pasó del 10% al 60-73%. En los trimestres más estables, ambos acertaron alrededor del 70%.
+- **Algunas métricas podían resultar engañosas.** En la evaluación, un clasificador que dice siempre "contracción" obtuvo el F1 más alto (0,729) sin anticipar nada. Por eso se eligió con exactitud balanceada y se compararon todos los modelos con referencias.
+- **Hipótesis para seguir investigando** (no comprobadas):
+  - es posible que las variables nominales (tipo de cambio, BADLAR) cambien de significado cuando cambia la inflación, lo que podría explicar el bajo desempeño de los árboles en 2025-2026;
+  - la regresión logística, más conservadora, obtuvo alertas muy precisas en 2025-2026; podría ser preferible si se priorizan alertas precisas, pero habría que confirmarlo con más períodos de validación, no con el conjunto de prueba.
+- **Uso:** con el último dato disponible, el modelo estima contracción en enero de 2027 para 12 de las 16 divisiones ([`models/predicciones_pendientes.csv`](models/predicciones_pendientes.csv)). Son estimaciones que podrán contrastarse cuando el INDEC publique esos meses.
+
+Las asociaciones encontradas no implican relaciones causales.
 
 ## 9. Limitaciones y alcances
 
@@ -199,4 +201,4 @@ Los notebooks se pueden ejecutar completos con Jupyter (`jupyter notebook notebo
 
 ## Video de presentación
 
-🎥 **[Ver el video de presentación del proyecto](ENLACE_AL_VIDEO)**
+🎥 **[Ver el video de presentación del proyecto](https://youtu.be/uye00F1roiw)**

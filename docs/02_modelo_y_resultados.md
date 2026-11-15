@@ -62,7 +62,7 @@ Se validaron **110 configuraciones** (grillas en [`train.py`](../contraccion_ind
 
 ![Efecto del hiperparámetro principal en la validación](../reports/figures/05_validacion_hiperparametros.png)
 
-**Modelo elegido: KNN con k = 15.** Su ventaja sobre la referencia en validación (0,02) es menor que la variación entre cortes, así que la validación ya anticipaba que la mejora no es clara. En KNN, los k chicos (5 a 15) dan resultados parecidos; con k = 51 o 101 empeora, porque la votación se parece cada vez más a la proporción general. La regresión logística necesita regularización fuerte (C = 0,01).
+**Modelo elegido: KNN con k = 15.** Su ventaja sobre la referencia en validación (0,02) es menor que la variación entre cortes, lo que ya sugería que la mejora podría no ser clara. En KNN, los k chicos (5 a 15) dan resultados parecidos; con k = 51 o 101 empeora, porque la votación se parece cada vez más a la proporción general. La regresión logística necesita regularización fuerte (C = 0,01).
 
 ## 5. Evaluación final en 2025-2026
 
@@ -87,14 +87,14 @@ Precisión, recall y F1 corresponden a la clase "contracción", con umbral 0,5.
 - Emitió **137** alertas: 86 correctas y **51** falsas (precisión 62,8%).
 - De las 116 divisiones-mes sin contracción, reconoció 65 (recall de esa clase 56,0%).
 
-**Referencia:** detectó 83 contracciones con 49 falsas alarmas. **El modelo elegido y la referencia tienen prácticamente el mismo desempeño.**
+**Referencia:** detectó 83 contracciones con 49 falsas alarmas. **En esta evaluación, el modelo elegido y la referencia tuvieron prácticamente el mismo desempeño.**
 
 **Otras observaciones:**
 - La **clase mayoritaria** tiene el F1 más alto (0,729), pero no anticipa nada: exactitud balanceada 0,500.
 - La **regresión logística** obtuvo en este período la mejor exactitud balanceada (0,602) y el mejor AUC (0,664), con muy pocas alertas pero casi todas correctas (36 de 39). **No se reemplaza el modelo elegido por este resultado**, porque sería elegir con el conjunto de prueba. Queda como hipótesis para validar con más datos.
 - **Random Forest y el árbol** casi no predijeron contracciones en 2025-2026 (recall 0,02 y 0,03).
 
-**Dónde se equivoca.** Ni el modelo ni la referencia anticiparon el cambio de ciclo de mediados de 2025:
+**Dónde se equivoca.** En esta muestra, ni el modelo ni la referencia anticiparon el cambio de ciclo de mediados de 2025:
 
 | Trimestre del mes predicho | 2025 T2 | 2025 T3 | 2025 T4 | 2026 T1 | 2026 T2 | 2026 T3 |
 |---|---|---|---|---|---|---|
@@ -108,7 +108,7 @@ Precisión, recall y F1 corresponden a la clase "contracción", con umbral 0,5.
 - La que más pesa es **`badlar_dif_ia`** (0,070).
 - La **variación interanual del tipo de cambio** tiene importancia **negativa** (−0,052): en este período, mezclarla al azar *mejora* el modelo.
 
-Como las variables macro son iguales para las 16 divisiones de un mes, en KNN dominan la distancia: el modelo busca sobre todo **meses parecidos** del pasado.
+Como las variables macro son iguales para las 16 divisiones de un mes, es probable que dominen la distancia en KNN: el modelo parecería buscar sobre todo **meses parecidos** del pasado.
 
 ![Importancia por permutación](../reports/figures/07_importancia_permutacion.png)
 
@@ -160,14 +160,16 @@ El notebook también muestra un **caso sintético** cargado a mano, para mostrar
 
 ## 8. Conclusiones
 
-- **Sobre el objetivo planteado.** Con las variables disponibles y 3 meses de horizonte desde la decisión, el modelo elegido detecta el **55%** de las contracciones de 2025-2026, con un **63%** de alertas correctas. Su desempeño es **prácticamente igual al de la referencia de inercia**. La evidencia **no permite afirmar** que el modelo anticipe mejor que suponer que cada división seguirá como en el último dato.
-- **Dónde está la dificultad.** Ningún modelo anticipó los cambios de ciclo (2021 y mediados de 2025). Cuando la tendencia es estable, tanto el modelo como la referencia aciertan alrededor del 70%.
+Se apoyan en la evidencia de este trabajo y se presentan como resultados acotados e hipótesis.
+
+- **Sobre el objetivo planteado.** Con las variables disponibles y 3 meses de horizonte desde la decisión, el modelo elegido detectó el **55%** de las contracciones de 2025-2026, con un **63%** de alertas correctas: un desempeño **prácticamente igual al de la referencia de inercia**. Con esta evidencia **no es posible afirmar** que el modelo anticipe mejor que suponer que cada división seguirá como en el último dato.
+- **Dónde parecería estar la dificultad.** En esta muestra, ningún modelo anticipó los cambios de ciclo (2021 y mediados de 2025). En los trimestres más estables, tanto el modelo como la referencia acertaron alrededor del 70%.
 - **Qué aporta el trabajo:**
   - un procedimiento de evaluación sin fuga de información, que respeta el calendario de publicación;
-  - la comparación con referencias, que muestra que un F1 alto podía ser engañoso;
-  - un modelo listo para usar, con predicciones reales verificables.
+  - la comparación con referencias, que mostró que un F1 alto podía ser engañoso;
+  - un modelo listo para usar, con estimaciones que podrán contrastarse con datos reales.
 - **Hipótesis (no comprobadas):**
-  - las variables nominales (tipo de cambio, BADLAR) cambian de significado cuando cambia la inflación; eso explicaría la caída de los árboles en 2025-2026 y la importancia negativa del tipo de cambio;
+  - es posible que las variables nominales (tipo de cambio, BADLAR) cambien de significado cuando cambia la inflación; eso podría explicar la caída de los árboles en 2025-2026 y la importancia negativa del tipo de cambio;
   - una regresión logística conservadora podría ser preferible si se priorizan alertas muy precisas.
 
 ## 9. Limitaciones y trabajo futuro

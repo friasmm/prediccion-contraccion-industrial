@@ -152,16 +152,18 @@ Estar en contracción hoy eleva la proporción de contracción en *t+5* **del 39
 
 ## 6. Conclusiones del análisis exploratorio
 
-- **La inercia es fuerte, pero no alcanza.** Estar en contracción hoy eleva mucho la probabilidad de estarlo 3 meses después de la decisión, pero falla justamente en los cambios de ciclo, que son los que interesa anticipar.
-- **Las variables externas muestran asociación con la contracción futura:**
+Son observaciones sobre el período de entrenamiento (2017-2024). Se plantean como hipótesis que la validación temporal tiene que poner a prueba.
+
+- **La inercia parece fuerte, aunque probablemente no alcance.** En el entrenamiento, estar en contracción hoy se asoció con una proporción mucho mayor de contracción 3 meses después de la decisión (70% contra 39%). Sin embargo, podría fallar justamente en los cambios de ciclo, que son los que interesa anticipar.
+- **Algunas variables externas parecerían asociarse con la contracción futura:**
   - una devaluación fuerte (`tc_var_ia`);
   - la caída de las importaciones y de la capacidad instalada respecto del año anterior;
   - una BADLAR alta o en suba.
 
-  En el entrenamiento, varias de ellas separan mejor que la propia evolución reciente de la división.
-- **Precaución:** las variables macro tienen **un solo valor por mes**, igual para las 16 divisiones, y su relación se apoya en pocos episodios: las recesiones de 2018-2019 y 2023. Además, el tipo de cambio y la BADLAR son **nominales**. Estas asociaciones son **hipótesis** que la validación temporal tiene que poner a prueba, no relaciones causales.
-- La capacidad instalada informa a través de su **cambio interanual**, no de su nivel.
-- Las predictoras tienen escalas muy distintas, desde proporciones hasta puntos porcentuales y % TNA. Por eso los modelos sensibles a escala (logística, KNN) necesitan escalado.
+  En el entrenamiento, varias de ellas separaron mejor que la propia evolución reciente de la división.
+- **Precaución:** las variables macro tienen **un solo valor por mes**, igual para las 16 divisiones, y su relación se apoya en pocos episodios (las recesiones de 2018-2019 y 2023). Además, el tipo de cambio y la BADLAR son **nominales**. Estas asociaciones no implican relaciones causales.
+- La capacidad instalada parecería informar más a través de su **cambio interanual** que de su nivel.
+- Las predictoras tienen escalas muy distintas (proporciones, puntos porcentuales, % TNA), así que los modelos sensibles a la escala (logística, KNN) necesitan escalado.
 
 ## 7. Disponibilidad temporal y separación de los datos
 
