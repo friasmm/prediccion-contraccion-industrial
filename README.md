@@ -17,13 +17,14 @@ Se compararon cinco modelos de clasificación (regresión logística, KNN, árbo
 El modelo elegido por validación, **KNN con k = 15**, detectó en 2025-2026 el **55%** de las contracciones, con un **63%** de alertas correctas. Es un desempeño **prácticamente igual al de la referencia**, lo que sugiere que, con estas variables, anticipar los cambios de ciclo con 3 meses de horizonte podría ser muy difícil. El repositorio incluye el modelo listo para usar y sus predicciones para los meses cuyo resultado todavía no se publicó.
 
 **Cómo recorrer el proyecto:**
-1. Este README: definición del problema, resultados y conclusiones.
-2. [`docs/01_datos_y_exploracion.md`](docs/01_datos_y_exploracion.md): origen de los datos, preparación y análisis exploratorio.
-3. [`docs/diccionario_de_datos.md`](docs/diccionario_de_datos.md): todas las variables de todos los archivos.
-4. [`notebooks/1.0-mf-carga-exploracion-dataset.ipynb`](notebooks/1.0-mf-carga-exploracion-dataset.ipynb): carga, transformaciones y exploración.
-5. [`notebooks/2.0-mf-modelado-evaluacion.ipynb`](notebooks/2.0-mf-modelado-evaluacion.ipynb): modelos, evaluación, interpretación y uso.
-6. [`docs/02_modelo_y_resultados.md`](docs/02_modelo_y_resultados.md): detalle del modelo y de los resultados.
-7. [Video de presentación](#video-de-presentación), al final de este README.
+1. [**Informe final de la Entrega 3**](reports/presentacion_final_y_analisis_de_resultados.md): todo el recorrido en un solo documento (fundamentación, datos, exploración, modelo, resultados, discusión, conclusiones y bibliografía).
+2. Este README: definición del problema, resultados y conclusiones.
+3. [`docs/01_datos_y_exploracion.md`](docs/01_datos_y_exploracion.md): origen de los datos, preparación y análisis exploratorio.
+4. [`docs/diccionario_de_datos.md`](docs/diccionario_de_datos.md): todas las variables de todos los archivos.
+5. [`notebooks/1.0-mf-carga-exploracion-dataset.ipynb`](notebooks/1.0-mf-carga-exploracion-dataset.ipynb): carga, transformaciones y exploración.
+6. [`notebooks/2.0-mf-modelado-evaluacion.ipynb`](notebooks/2.0-mf-modelado-evaluacion.ipynb): modelos, evaluación, interpretación y uso.
+7. [`docs/02_modelo_y_resultados.md`](docs/02_modelo_y_resultados.md): detalle del modelo y de los resultados.
+8. [Video de presentación](#video-de-presentación), al final de este README.
 
 ---
 
@@ -173,6 +174,7 @@ Organizado según la plantilla [Cookiecutter Data Science](https://github.com/dr
 │   └── 2.0-mf-modelado-evaluacion.ipynb
 ├── references/                   → metodologías del INDEC
 ├── reports/
+│   ├── presentacion_final_y_analisis_de_resultados.md → informe final de la Entrega 3
 │   └── figures/                  → gráficos generados por los notebooks
 └── contraccion_industrial/       → código del proyecto
     ├── config.py                 → rutas, horizonte de predicción y lista de predictoras
